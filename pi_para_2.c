@@ -61,7 +61,7 @@ int main (int argc, char *argv[]) {
     +((pi - PI_O) / PI_O)) * 100):((1
     -((pi - PI_O) / PI_O)) * 100);
     printf("\nEstimated PI Value: %.12f\n", pi);
-    printf("\nACCURACY: %.4f%\n", accuracy);
+    printf("\nACCURACY: %.4f\n", accuracy);
     printf("Total NUMBER of THREADS: %d", omp_get_num_threads());
     return 0;
 }
