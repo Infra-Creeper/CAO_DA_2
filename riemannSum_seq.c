@@ -9,11 +9,11 @@ double f(double x) {
 }
 
 // Riemann sum using left endpoint method
-double riemann_sum_left(double a, double b, long long n) {
+double riemann_sum_left(double a, double b, long n) {
     double delta = (b - a) / n;  // Width of each rectangle
     double sum = 0.0;
     
-    #pragma omp parallel for reduction(+:sum)
+    
     for (long i = 0; i < n; i++) {
         double x = a + i * delta;
         sum += f(x);
@@ -23,7 +23,7 @@ double riemann_sum_left(double a, double b, long long n) {
 }
 
 // Riemann sum using right endpoint method
-double riemann_sum_right(double a, double b, long n) {
+double riemann_sum_right(double a, double b, long long n) {
     double delta = (b - a) / n;
     double sum = 0.0;
     
@@ -41,7 +41,6 @@ double riemann_sum_midpoint(double a, double b, long n) {
     double delta = (b - a) / n;
     double sum = 0.0;
     
-    #pragma omp parallel for reduction(+:sum)
     for (long i = 0; i < n; i++) {
         double x = a + (i + 0.5) * delta;
         sum += f(x);
@@ -56,7 +55,7 @@ int main(int argc, char *argv[]) {
     long long n = 1e10;   // Number of rectangles
     
     // Set number of threads (optional)
-    omp_set_num_threads(8);
+    omp_set_num_threads(1);
     
     printf("Computing Riemann Sum for f(x) = x^2 from %.2f to %.2f\n", a, b);
     printf("Number of rectangles: %lld\n", n);
