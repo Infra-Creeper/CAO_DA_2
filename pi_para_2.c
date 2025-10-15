@@ -5,6 +5,8 @@
 #include <omp.h>
 #define PI_O 3.141592653589
 
+
+
 double epoch(int i){
 	
 	printf("====EXECUTING EPOCH %d CURRENTLY====\n", i);
@@ -44,7 +46,8 @@ double epoch(int i){
     
 }
 int main (int argc, char *argv[]) {
-	printf("Estimating Value of PI\n");
+	omp_set_num_threads(8);
+    printf("Estimating Value of PI\n");
 	int n = 10;
     printf("----------EXECUTING FOR %d EPOCHS----------\n", n);
     unsigned int start = time(NULL);
@@ -62,7 +65,7 @@ int main (int argc, char *argv[]) {
     -((pi - PI_O) / PI_O)) * 100);
     printf("\nEstimated PI Value: %.12f\n", pi);
     printf("\nACCURACY: %.4f\n", accuracy);
-    printf("Total NUMBER of THREADS: %d", omp_get_num_threads());
+    printf("Total NUMBER of THREADS: %d\n", omp_get_num_threads());
     return 0;
 }
 
